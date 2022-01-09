@@ -6,9 +6,7 @@ This is a naive attempt at a solver that selects a good first word. The first gu
 
 ## Solver algorithm
 
-This solve is using the built in dictionary in Mac OS as the base set of words.
-
-The dictionary has `235886` words. From that list `10230` are 5 letters long.
+As a base dictionary of words, this uses the built in dictionary in Mac OS. The dictionary has `235886` words and `10230` are 5 letters long.
 
 From those 5 letter words, this program attempts to score the words on how well they may serve the purpose of being a good first guess.
 
