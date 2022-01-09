@@ -1,13 +1,16 @@
 #!/usr/bin/env ruby
 
 class WordleSolver
-  attr_reader :raw_words, :word_scores
+  attr_reader :raw_words
+  attr_accessor :word_scores
 
   def initialize
     @word_scores = []
     load_raw_words
     score_words
     filtered = filter_scored_words(min_score = 8)
+
+    # Print one guess
     puts filtered.sample.keys.first
   end
 
@@ -21,11 +24,11 @@ class WordleSolver
     @one_point_vowels ||= %w(a e i o i)
   end
 
-  def one_point_all_distinct(word)
+  def one_point_all_distinct?(word)
     word.chars.length == word.chars.uniq.length
   end
 
-  def one_point_gte_three_vowels(word)
+  def one_point_gte_three_vowels?(word)
     count = 0
     word.chars.uniq.each do |char|
       if one_point_vowels.include?(char)
@@ -60,11 +63,11 @@ class WordleSolver
       end
     end
 
-    if one_point_all_distinct(word)
+    if one_point_all_distinct?(word)
       score += 1
     end
 
-    if one_point_gte_three_vowels(word)
+    if one_point_gte_three_vowels?(word)
       score += 1
     end
 
@@ -74,8 +77,6 @@ class WordleSolver
     hash
   end
 
-  # Naive first pass
-  # Really we want distinct RSTLE and vowels to maximize guess opportunities
   def score_words
     raw_words.each do |word|
       word_scores << score_word(word)
