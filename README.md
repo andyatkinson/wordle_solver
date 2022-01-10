@@ -10,7 +10,7 @@ As a base dictionary of words, this uses the built in dictionary in Mac OS. The 
 
 From those 5 letter words, this program attempts to score the words on how well they may serve the purpose of being a good first guess.
 
-The number of Wheel of Fortunate consonants count, vowels count, distinct letters count, all aspects that contribute to the scores. From the highest scoring words, a random one is selected.
+The number of Wheel of Fortune (`R S T L N E`) consonants count, vowels count, distinct letters count, all aspects that contribute to the scores. From the highest scoring words, a random one is selected.
 
 ## Running it
 
