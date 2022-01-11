@@ -1,20 +1,31 @@
-#!/usr/bin/env ruby
+require 'set'
 
 class WordleSolver
   attr_reader :raw_words
   attr_accessor :word_scores
 
   def initialize
+    @raw_words = Set.new
     @word_scores = []
     load_raw_words
+    add_seed_words
     score_words
     filtered = filter_scored_words(min_score = 8)
 
-    # Print one guess
+    # Print one suggestion for the first word
     puts filtered.sample.keys.first
   end
 
   private
+
+  # https://twitter.com/getajobmike/status/1480941881445945345
+  def seed_words
+    %w(
+    TREAD LOUSE TRAIN ARTSY PHONE TEARS LEARN GRAPH
+    CABLE ADIEU SPEAR RATES COLIN MEANS DRINK BEAUT
+    RAISE
+    ).map(&:downcase)
+  end
 
   def one_point_consonants
     @one_point_consonants ||= %w(r s t l n e)
@@ -43,6 +54,10 @@ class WordleSolver
   def load_raw_words(word_length = 5)
     @raw_words = File.read("/usr/share/dict/words").
       split.grep(/^.{#{word_length}}$/)
+  end
+
+  def add_seed_words
+    @raw_words + seed_words
   end
 
   def score_word(word)

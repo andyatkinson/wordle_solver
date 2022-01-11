@@ -24,3 +24,7 @@ e.g.
 > ruby wordle_solver.rb
 irate
 ```
+
+## TODO
+
+[ ] Keep track of existing suggestions, remove them (e.g. write them to a file)
